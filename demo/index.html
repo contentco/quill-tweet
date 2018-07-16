@@ -5,7 +5,11 @@
         <link rel="stylesheet" type="text/css" href="../dist/quill-tweet.css">
     </head>
     <body>
-        
+        <div id="twt_load">Load Twitter</div>
+
+            <h2>Rendered</h2>
+            <div style="margin:20px 0px; padding: 20px; border: 1px solid lightgray" id="rendered_html"></div>
+
         <div class="container" style="position:relative;">
             <h2>Editor</h2>
             <div id="quill-editor" style="max-height: 300px;"></div>
@@ -20,29 +24,46 @@
                 <textarea id="output_html"
                     style="width:100%; min-height:300px; border: 1px solid lightgray; flex-basis:50%;"></textarea>
             </div>
+
+            <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr"><a href="https://twitter.com/itshummm?ref_src=twsrc%5Etfw">@itshummm</a> Sure, try the coupon code &quot;hacking20&quot;  for %20 off :)</p>&mdash; UI8 (@ui8net) <a href="https://twitter.com/ui8net/status/511978514942529537?ref_src=twsrc%5Etfw">September 16, 2014</a></blockquote>
+
+
         </div>
+        
         <script src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
         <script src="../node_modules/quill/dist/quill.js"></script>
         <script src="../dist/quill-tweet.js"></script>
         <script type="text/javascript">
+          var btn = document.getElementById('twt_load');
+          btn.addEventListener('click', function(e) {
+            twttr.widgets.load().then(function(res) {
+              console.log('res', res);
+            });
+            console.log('clicked');
+          });
+          
           var toolbarOptions = {
             container: [
               ['bold', 'italic', 'underline', 'strike'],
-              ['video', 'tweet']        
+              ['video', 'tweet', 'otweet']        
             ],
 
           }
           var quill = new Quill('#quill-editor', {
               modules: {
-                    toolbar: toolbarOptions,
+                  toolbar: toolbarOptions,
               },
               placeholder: 'Compose an epic...',
               theme: 'snow',
           });
-        var content = '<div class="ql-tweet" data-url="https://twitter.com/ui8net/status/511978514942529537" data-id="511978514942529537"><twitterwidget class="twitter-tweet twitter-tweet-rendered" id="twitter-widget-0" style="position: static; visibility: visible; display: block; transform: rotate(0deg); max-width: 100%; width: 500px; min-width: 220px; margin-top: 10px; margin-bottom: 10px;" data-tweet-id="511978514942529537"></twitterwidget></div><p><br></p>';
+
+        var content = '<div class="ql-tweet" data-url="https://twitter.com/ui8net/status/511978514942529537" data-id="511978514942529537"><twitterwidget class="twitter-tweet twitter-tweet-rendered" id="twitter-widget-1" style="position: static; visibility: visible; display: block; transform: rotate(0deg); max-width: 100%; width: 500px; min-width: 220px; margin-top: 10px; margin-bottom: 10px;" data-tweet-id="511978514942529537"></twitterwidget></div><p>ok</p>';
         quill.pasteHTML(content);
-        setInterval( function() { document.getElementById("output_delta").value=JSON.stringify(quill.editor.getDelta()) }, 500);
-        setInterval( function() { document.getElementById("output_html").value=quill.root.innerHTML }, 500);
+        setInterval( function() { document.getElementById("output_delta").value=JSON.stringify(quill.editor.getDelta()) }, 5000);
+        setInterval( function() { document.getElementById("output_html").value=quill.root.innerHTML }, 5000);
+        setInterval( function() { document.getElementById("rendered_html").innerHTML =quill.root.innerHTML }, 5000);
+
         </script>
+
     </body>
 </html>
