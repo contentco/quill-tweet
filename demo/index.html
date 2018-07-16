@@ -21,7 +21,7 @@
                     style="width:100%; min-height:300px; border: 1px solid lightgray; flex-basis:50%;"></textarea>
             </div>
         </div>
-        <script src="https://platform.twitter.com/widgets.js"></script>
+        <script src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
         <script src="../node_modules/quill/dist/quill.js"></script>
         <script src="../dist/quill-tweet.js"></script>
         <script type="text/javascript">
@@ -39,7 +39,7 @@
               placeholder: 'Compose an epic...',
               theme: 'snow',
           });
-        var content = 'This is a demo!';
+        var content = '<div class="ql-tweet" data-url="https://twitter.com/ui8net/status/511978514942529537" data-id="511978514942529537"><twitterwidget class="twitter-tweet twitter-tweet-rendered" id="twitter-widget-0" style="position: static; visibility: visible; display: block; transform: rotate(0deg); max-width: 100%; width: 500px; min-width: 220px; margin-top: 10px; margin-bottom: 10px;" data-tweet-id="511978514942529537"></twitterwidget></div><p><br></p>';
         quill.pasteHTML(content);
         setInterval( function() { document.getElementById("output_delta").value=JSON.stringify(quill.editor.getDelta()) }, 500);
         setInterval( function() { document.getElementById("output_html").value=quill.root.innerHTML }, 500);
