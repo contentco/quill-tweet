@@ -1,0 +1,41 @@
+{
+  "name": "quill-tweet",
+  "version": "0.0.1",
+  "description": "Quill Extension for Embedding Tweets",
+  "main": "webpack.config.js",
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^6.4.1",
+    "babel-preset-env": "^1.7.0",
+    "css-loader": "^0.27.3",
+    "extract-text-webpack-plugin": "^2.1.0",
+    "node-sass": "^4.5.3",
+    "sass-loader": "^6.0.5",
+    "uglifyjs-webpack-plugin": "^0.4.3",
+    "webpack": "^2.7.0",
+    "webpack-dev-server": "^2.11.2"
+  },
+  "scripts": {
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/contentco/quill-tweet"
+  },
+  "keywords": [
+    "content",
+    "quill",
+    "editor"
+  ],
+  "author": "contentco",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/contentco/quill-tweet/issues"
+  },
+  "homepage": "https://github.com/contentco/quill-tweet#readme",
+  "dependencies": {
+    "babel": "^6.23.0",
+    "preact": "^7.2.1",
+    "quill": "^1.2.4"
+  }
+}
