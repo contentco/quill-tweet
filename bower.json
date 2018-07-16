@@ -1,6 +1,6 @@
 {
   "name": "quill-tweet",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Quill extension to embed tweets",
   "main": "webpack.config.js",
   "authors": [
