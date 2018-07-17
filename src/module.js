@@ -11,39 +11,8 @@ let Icon = Quill.import('ui/icons');
 
 class TweetBlot extends BlockEmbed {
   constructor(node) {
-    console.log('constructor');
     super(node);
-    twttr.widgets.load(node);
-  }
-
-  static formats(node) {
-    console.log('formats', node);
     // twttr.widgets.load(node);
-    super.formats(node);
-    // return "<div class='ql-tweeteee'>test</div>";
-  }
-
-  static index(node, offset) {
-    console.log('index', node, offset);
-    super.index(node, offset);
-
-  }
-
-  static restore(node) {
-    console.log('restore', node);
-    super.restore(node);
-  }
-
-
-  static update(mutations, context) {
-    console.log('update', mutations, context);
-    super.update(mutations, context);
-  }
-
-  static format(name, value) {
-    console.log('format', name, value);
-
-    super.format(name, value);
   }
 
   static icon() {
@@ -51,7 +20,6 @@ class TweetBlot extends BlockEmbed {
   }
 
   static create(value) {
-    console.log('create');
     let node = super.create(value);
     let html = value;
     node.innerHTML = html;
@@ -60,11 +28,10 @@ class TweetBlot extends BlockEmbed {
   }
 
   static value(node) {
-    console.log('value', node);
     return node.innerHTML;
   }
-
 }
+
 TweetBlot.blotName = 'tweet';
 TweetBlot.tagName = 'DIV';
 TweetBlot.className = 'ql-tweet';

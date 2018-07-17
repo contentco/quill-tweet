@@ -61,11 +61,11 @@
         // quill.pasteHTML(content);
 
         var contents = quill.clipboard.convert(content);
-        console.log('contents', contents);
+        // console.log('contents', contents);
         quill.setContents(contents);
         quill.history.clear();
 
-        console.log('content', content);
+        // console.log('content', content);
 
         setInterval( function() { document.getElementById("output_delta").value=JSON.stringify(quill.editor.getDelta()) }, 500);
         setInterval( function() { document.getElementById("output_html").value=quill.root.innerHTML }, 500);
