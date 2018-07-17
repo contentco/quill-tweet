@@ -25,7 +25,7 @@
                     style="width:100%; min-height:300px; border: 1px solid lightgray; flex-basis:50%;"></textarea>
             </div>
 
-            <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr"><a href="https://twitter.com/itshummm?ref_src=twsrc%5Etfw">@itshummm</a> Sure, try the coupon code &quot;hacking20&quot;  for %20 off :)</p>&mdash; UI8 (@ui8net) <a href="https://twitter.com/ui8net/status/511978514942529537?ref_src=twsrc%5Etfw">September 16, 2014</a></blockquote>
+<!--             <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr"><a href="https://twitter.com/itshummm?ref_src=twsrc%5Etfw">@itshummm</a> Sure, try the coupon code &quot;hacking20&quot;  for %20 off :)</p>&mdash; UI8 (@ui8net) <a href="https://twitter.com/ui8net/status/511978514942529537?ref_src=twsrc%5Etfw">September 16, 2014</a></blockquote> -->
 
 
         </div>
@@ -45,7 +45,7 @@
           var toolbarOptions = {
             container: [
               ['bold', 'italic', 'underline', 'strike'],
-              ['video', 'tweet', 'otweet']        
+              ['video', 'tweet']        
             ],
 
           }
@@ -57,8 +57,16 @@
               theme: 'snow',
           });
 
-        var content = '<div class="ql-tweet"><twitterwidget class="twitter-tweet twitter-tweet-rendered" id="twitter-widget-1" style="position: static; visibility: visible; display: block; transform: rotate(0deg); max-width: 100%; width: 500px; min-width: 220px; margin-top: 10px; margin-bottom: 10px;" data-tweet-id="511978514942529537"></twitterwidget></div><div class="ql-tweet">https://twitter.com/ui8net/status/511978514942529537</div><p>ok</p>';
-        quill.pasteHTML(content);
+        var content = '<div class="ql-tweet">custeom tweet</div><div class="ql-tweet"><blockquote class="twitter-tweet" data-lang="en" data-twitter-extracted-i1531801384777442097="true"><p lang="en" dir="ltr">Hello Florence 🇮🇹Our Sketch Ambassador <a href="https://twitter.com/mastrooooooo?ref_src=twsrc%5Etfw">@mastrooooooo</a> is hosting a free Sketch workshop on July 26 at the cool <a href="https://twitter.com/NanaBiancaItaly?ref_src=twsrc%5Etfw">@nanabiancaitaly</a>. There are a few spots left. Grab a 🎟<a href="https://t.co/TVosjaNnjI">https://t.co/TVosjaNnjI</a> <a href="https://t.co/BGWvMR2wqt">pic.twitter.com/BGWvMR2wqt</a></p>— Sketch (@sketchapp) <a href="https://twitter.com/sketchapp/status/1017789080871030784?ref_src=twsrc%5Etfw">July 13, 2018</a></blockquote></div><p><br></p>';
+        // quill.pasteHTML(content);
+
+        var contents = quill.clipboard.convert(content);
+        console.log('contents', contents);
+        quill.setContents(contents);
+        quill.history.clear();
+
+        console.log('content', content);
+
         setInterval( function() { document.getElementById("output_delta").value=JSON.stringify(quill.editor.getDelta()) }, 500);
         setInterval( function() { document.getElementById("output_html").value=quill.root.innerHTML }, 500);
         setInterval( function() { document.getElementById("rendered_html").innerHTML =quill.root.innerHTML }, 500);
