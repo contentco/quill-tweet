@@ -57,11 +57,11 @@
               theme: 'snow',
           });
 
-        var content = '<div class="ql-tweet" data-url="https://twitter.com/ui8net/status/511978514942529537" data-id="511978514942529537"><twitterwidget class="twitter-tweet twitter-tweet-rendered" id="twitter-widget-1" style="position: static; visibility: visible; display: block; transform: rotate(0deg); max-width: 100%; width: 500px; min-width: 220px; margin-top: 10px; margin-bottom: 10px;" data-tweet-id="511978514942529537"></twitterwidget></div><p>ok</p>';
+        var content = '<div class="ql-tweet"><twitterwidget class="twitter-tweet twitter-tweet-rendered" id="twitter-widget-1" style="position: static; visibility: visible; display: block; transform: rotate(0deg); max-width: 100%; width: 500px; min-width: 220px; margin-top: 10px; margin-bottom: 10px;" data-tweet-id="511978514942529537"></twitterwidget></div><div class="ql-tweet">https://twitter.com/ui8net/status/511978514942529537</div><p>ok</p>';
         quill.pasteHTML(content);
-        setInterval( function() { document.getElementById("output_delta").value=JSON.stringify(quill.editor.getDelta()) }, 5000);
-        setInterval( function() { document.getElementById("output_html").value=quill.root.innerHTML }, 5000);
-        setInterval( function() { document.getElementById("rendered_html").innerHTML =quill.root.innerHTML }, 5000);
+        setInterval( function() { document.getElementById("output_delta").value=JSON.stringify(quill.editor.getDelta()) }, 500);
+        setInterval( function() { document.getElementById("output_html").value=quill.root.innerHTML }, 500);
+        setInterval( function() { document.getElementById("rendered_html").innerHTML =quill.root.innerHTML }, 500);
 
         </script>
 
