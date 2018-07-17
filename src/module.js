@@ -2,7 +2,7 @@ let BlockEmbed = Quill.import('blots/block/embed');
 let Inline = Quill.import('blots/inline');
 let TextBlot = Quill.import('blots/text');
 let Embed = Quill.import('blots/text');
-let Container = Quill.import('blots/container');
+let Blockquote = Quill.import('formats/blockquote');
 
 let Link = Quill.import('formats/link');
 let Icon = Quill.import('ui/icons');
@@ -32,7 +32,7 @@ class TweetBlot extends BlockEmbed {
 TweetBlot.blotName = 'tweet';
 TweetBlot.tagName = 'div';
 TweetBlot.className = 'ql-tweet';
-
+TweetBlot.allowedChildren = [Inline, TextBlot, Embed, Blockquote];
 Icon['tweet'] = TweetBlot.icon();
 
 
