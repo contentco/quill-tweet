@@ -5,8 +5,8 @@
         <link rel="stylesheet" type="text/css" href="../dist/quill-tweet.css">
     </head>
     <body>
-        <div id="twt_load">Load Twitter</div>
-
+        <button id="renderPage" style="padding:10px; border-radius: 5px; background-color: #0366d6; color: white;">Update Rendered</button>
+        <button id="loadTwitter" style="padding:10px; border-radius: 5px; background-color: #0366d6; color: white;">Render Twwets</button>
             <h2>Rendered</h2>
             <div style="margin:20px 0px; padding: 20px; border: 1px solid lightgray" id="rendered_html"></div>
 
@@ -34,14 +34,18 @@
         <script src="../node_modules/quill/dist/quill.js"></script>
         <script src="../dist/quill-tweet.js"></script>
         <script type="text/javascript">
-          var btn = document.getElementById('twt_load');
+          var btn = document.getElementById('loadTwitter');
           btn.addEventListener('click', function(e) {
-            twttr.widgets.load().then(function(res) {
-              console.log('res', res);
-            });
-            console.log('clicked');
+            renderTweets();
+            // twttr.widgets.load().then(function(res) {
+            //   console.log('res', res);
+            // });
+            // console.log('clicked');
           });
-          
+          var btn = document.getElementById('renderPage');
+          btn.addEventListener('click', function(e) {
+            render();
+          });          
           var toolbarOptions = {
             container: [
               ['bold', 'italic', 'underline', 'strike'],
@@ -57,7 +61,7 @@
               theme: 'snow',
           });
 
-        var content = '<div class="ql-tweet">custeom tweet</div><div class="ql-tweet"><blockquote class="twitter-tweet" data-lang="en" data-twitter-extracted-i1531801384777442097="true"><p lang="en" dir="ltr">Hello Florence 🇮🇹Our Sketch Ambassador <a href="https://twitter.com/mastrooooooo?ref_src=twsrc%5Etfw">@mastrooooooo</a> is hosting a free Sketch workshop on July 26 at the cool <a href="https://twitter.com/NanaBiancaItaly?ref_src=twsrc%5Etfw">@nanabiancaitaly</a>. There are a few spots left. Grab a 🎟<a href="https://t.co/TVosjaNnjI">https://t.co/TVosjaNnjI</a> <a href="https://t.co/BGWvMR2wqt">pic.twitter.com/BGWvMR2wqt</a></p>— Sketch (@sketchapp) <a href="https://twitter.com/sketchapp/status/1017789080871030784?ref_src=twsrc%5Etfw">July 13, 2018</a></blockquote></div><p><br></p>';
+        var content = '<div class="ql-tweet" data-url="https://twitter.com/sketchapp/status/1017789080871030784" data-id="1017789080871030784"><twitterwidget class="twitter-tweet twitter-tweet-rendered" id="twitter-widget-0" style="position: static; visibility: visible; display: block; transform: rotate(0deg); max-width: 100%; width: 500px; min-width: 220px; margin-top: 10px; margin-bottom: 10px;" data-tweet-id="1017789080871030784"></twitterwidget></div><p>s</p>';
         // quill.pasteHTML(content);
 
         var contents = quill.clipboard.convert(content);
@@ -67,10 +71,30 @@
 
         // console.log('content', content);
 
-        setInterval( function() { document.getElementById("output_delta").value=JSON.stringify(quill.editor.getDelta()) }, 500);
-        setInterval( function() { document.getElementById("output_html").value=quill.root.innerHTML }, 500);
-        setInterval( function() { document.getElementById("rendered_html").innerHTML =quill.root.innerHTML }, 500);
+        // setInterval( function() { document.getElementById("output_delta").value=JSON.stringify(quill.editor.getDelta()) }, 500);
+        // setInterval( function() { document.getElementById("output_html").value=quill.root.innerHTML }, 500);
+        // setInterval( function() { document.getElementById("rendered_html").innerHTML = quill.root.innerHTML }, 500);
+        function render() {
+          document.getElementById("rendered_html").innerHTML = quill.root.innerHTML;
+          document.getElementById("output_html").value=quill.root.innerHTML
+          document.getElementById("output_delta").value=JSON.stringify(quill.editor.getDelta())
+        }
 
+        function renderTweets() {
+          var tweets = document.querySelectorAll("div.ql-tweet");
+
+          for (var i = 0; i <tweets.length; i++) {
+            while (tweets[i].firstChild) {
+                tweets[i].removeChild(tweets[i].firstChild);
+            }
+            twttr.widgets.createTweet(tweets[i].dataset.id, tweets[i]);
+          }
+        }
+
+        // setInterval( function() {
+        //   renderTweets();
+        // }, 500)
+        renderTweets();
         </script>
 
     </body>
